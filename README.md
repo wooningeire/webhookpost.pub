@@ -15,4 +15,5 @@ As a personal app, several field presets are made available for certain purposes
 | `4`\* | Sandbox WebHook link												  |
 | `5`\* | Spam WebHook link													  |
 | `6`	| Demon of PaRappa the Rapper										  |
+</table>
 \* identical to empty preset due to removed WebHook link

@@ -1,466 +1,466 @@
 <!DOCTYPE html>
 
 <html lang="en">
-    <head>
-        <title>Discord WebHook Post</title>
-        <meta charset="UTF-8">
-        <link href="http://overpass-30e2.kxcdn.com/overpass.css" rel="stylesheet">
-        <style type="text/css">
+	<head>
+		<title>Discord WebHook Post</title>
+		<meta charset="UTF-8">
+		<link href="http://overpass-30e2.kxcdn.com/overpass.css" rel="stylesheet">
+		<style type="text/css">
 
 * {
-    font-family: Overpass, Interstate, sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    color: #b9b9b9;
+	font-family: Overpass, Interstate, sans-serif;
+	font-size: 12px;
+	font-weight: 600;
+	color: #b9b9b9;
 }
 
 body {
-    background: #36393d;
-    
-    margin: 0;
+	background: #36393d;
+	
+	margin: 0;
 }
 
 header {
-    text-align: center;
+	text-align: center;
 }
 
 h1 {
-    font-size: 36px;
-    font-weight: 200;
-    text-transform: uppercase;
-    margin-bottom: .5%;
+	font-size: 36px;
+	font-weight: 200;
+	text-transform: uppercase;
+	margin-bottom: .5%;
 }
 
 /*input[type="radio"] {
-    display: none;
+	display: none;
 }*/
 
 #main {
-    margin: 1% 5% 0 5%;
-    width: 90%;
-    border-radius: 20px;
-    text-align: center;
-    transition: height 1s ease;
+	margin: 1% 5% 0 5%;
+	width: 90%;
+	border-radius: 20px;
+	text-align: center;
+	transition: height 1s ease;
 }
 
 #form-json {
-    display: none;
+	display: none;
 }
 
 .inputs-part:not(:last-child) {
-    border-bottom: 2px solid;
-    padding-bottom: 1%;
+	border-bottom: 2px solid;
+	padding-bottom: 1%;
 }
 
 .inputs-part:last-child {
-    padding-top: 1%;
+	padding-top: 1%;
 }
 
 h2 {
-    font-size: 24px;
-    font-weight: 400;
+	font-size: 24px;
+	font-weight: 400;
 }
 
 .required:after {
-    content: "*";
+	content: "*";
 }
 .post-required:after {
-    color: #f04848;
+	color: #f04848;
 }
 .msg-required:after {
-    color: #faa51b;
+	color: #faa51b;
 }
 .embed-required:after {
-    color: #44b37f;
+	color: #44b37f;
 }
 
 #status {
-    margin: 1% 0;
-    transition: color .5s ease;
+	margin: 1% 0;
+	transition: color .5s ease;
 }
 .error {
-    color: #f04848;
+	color: #f04848;
 }
 .success {
-    color: #738bd9;
+	color: #738bd9;
 }
 .neutral {
-    color: #7a7a7a;
+	color: #7a7a7a;
 }
 
 #radios {
-    margin: 1% 0;
+	margin: 1% 0;
 }
 
 #radios > div {
-    display: inline-block;
-    margin: 0 1%;
+	display: inline-block;
+	margin: 0 1%;
 }
 
 .input {
-    display: inline-block;
-    width: 16%;
-    margin: .5% 2%;
+	display: inline-block;
+	width: 16%;
+	margin: .5% 2%;
 }
 
 input[type="text"], textarea {
-    padding: .5%;
-    width: 98%;
-    box-shadow: inset 0 0 10px #000;
-    background: #2e3136;
-    border: 2px solid;
-    text-align: center;
-    border-radius: 20px;
-    outline: none;
-    transition: border .5s ease,
-                box-shadow .5s ease;
+	padding: .5%;
+	width: 98%;
+	box-shadow: inset 0 0 10px #000;
+	background: #2e3136;
+	border: 2px solid;
+	text-align: center;
+	border-radius: 20px;
+	outline: none;
+	transition: border .5s ease,
+				box-shadow .5s ease;
 }
 
 input[type="text"] {
-    height: 20px;
+	height: 20px;
 }
 
 textarea {
-    height: 60px;
+	height: 60px;
 }
 
 #json {
-    height: 50vh;
-    text-align: left;
-    font-family: monospace;
-    white-space: nowrap;
+	height: 50vh;
+	text-align: left;
+	font-family: monospace;
+	white-space: nowrap;
 }
 
 [type="text"]:focus, textarea:focus {
-    border-color: #738bd9;
+	border-color: #738bd9;
 }
 
 button {
-    background: rgba(255, 255, 255, .1);
-    border: none;
-    border-radius: 5px;
-    outline: 0;
-    transition: background .5s ease,
-                color .5s ease,
-                opacity .5s ease;
+	background: rgba(255, 255, 255, .1);
+	border: none;
+	border-radius: 5px;
+	outline: 0;
+	transition: background .5s ease,
+				color .5s ease,
+				opacity .5s ease;
 }
 
 button[disabled], button[disabled]:hover, button[disabled]:active {
-    opacity: .5;
-    background: rgba(255, 255, 255, .1);
-    color: inherit;
+	opacity: .5;
+	background: rgba(255, 255, 255, .1);
+	color: inherit;
 }
 
 button:hover, button:active {
-    background: rgba(115, 139, 217, .4);
-    color: #fff;
+	background: rgba(115, 139, 217, .4);
+	color: #fff;
 }
 
 button:hover:active {
-    background: rgba(115, 139, 217, .7);
+	background: rgba(115, 139, 217, .7);
 }
 
-        </style>
-    </head>
-    <body>
-        <header>
-            <h1>Discord WebHook Post</h1>
-            <button id="send">Post</button>
-            <div id="status" class="neutral">Nothing posted.</div>
-            
-            <div id="radios">
-                <div>
-                    <input name="mode" type="radio" id="radio-fields" checked /><br />Input fields
-                </div>
-                <div>
-                    <input name="mode" type="radio" id="radio-json" /><br />JSON input
-                </div>
-            </div>
-        </header>
-        <section id="main">
-            <div id="form-all">
-                <div class="input" style="width: 71%;">
-                    <span class="required post-required" title="Required">URL</span><br />
-                    <input type="text" id="url" value="" />
-                </div>
-            </div>
-            
-            <div id="form-fields">
-                <div class="inputs-part">  
-                    <div class="input" style="width: 71%;">
-                        Message<br />
-                        <textarea id="m-text" maxlength="2000"></textarea>
-                    </div>
-                
-                    <br />
-                
-                    <div class="input">
-                        Icon<br />
-                        <input type="text" id="m-icon_url" />
-                    </div>
-                
-                    <div class="input" style="width: 21%;">
-                        Nickname<br />
-                        <input type="text" id="m-username" />
-                    </div>
-                </div>
-                
-                <div class="inputs-part">
-                    <div class="input" style="width: 71%;">
-                        Content<br />
-                        <textarea id="e-text" maxlength="2000"></textarea>
-                    </div>
-                    
-                    <br />
-                    
-                    <div class="input">
-                        Title<br />
-                        <input type="text" id="e-title" />
-                    </div>
-                    
-                    <div class="input">
-                        Author<br />
-                        <input type="text" id="e-author_name" />
-                    </div>
-                    
-                    <div class="input">
-                        Icon<br />
-                        <input type="text" id="e-author_icon" />
-                    </div>
-                    
-                    <br />
-                    
-                    <div class="input" style="width: 46%;">
-                        Accent<br />
-                        <input type="text" id="e-color" value="#4f545c">
-                    </div>
-                    
-                    <br />
-                    
-                    <div class="input" style="width: 71%;">
-                        Fields content<br />
-                        <textarea id="e-fields-value" maxlength="2000"></textarea>
-                    </div>
-                    
-                    <br />
-                    
-                    <div class="input">
-                        Fields title<br />
-                        <input type="text" id="e-fields-title" />
-                    </div>
-                    
-                    <br />
-                    
-                    <div class="input">
-                        Footer icon<br />
-                        <input type="text" id="e-footer_icon" />
-                    </div>
-                    
-                    <div class="input" style="width: 21%;">
-                        Footer<br />
-                        <input type="text" id="e-footer" />
-                    </div>
-                </div>
-            </div>
-            
-            <div id="form-json">
-                <div class="input" style="width: 71%;">
-                    JSON or JavaScript function<br />
-                    <textarea id="json"></textarea>
-                </div>
-            </div>
-        </section>
-        
-        <script src="functions.js"></script>
-        <script lang="javascript" type="text/javascript">
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1>Discord WebHook Post</h1>
+			<button id="send">Post</button>
+			<div id="status" class="neutral">Nothing posted.</div>
+			
+			<div id="radios">
+				<div>
+					<input name="mode" type="radio" id="radio-fields" checked /><br />Input fields
+				</div>
+				<div>
+					<input name="mode" type="radio" id="radio-json" /><br />JSON input
+				</div>
+			</div>
+		</header>
+		<section id="main">
+			<div id="form-all">
+				<div class="input" style="width: 71%;">
+					<span class="required post-required" title="Required">URL</span><br />
+					<input type="text" id="url" value="" />
+				</div>
+			</div>
+			
+			<div id="form-fields">
+				<div class="inputs-part">  
+					<div class="input" style="width: 71%;">
+						Message<br />
+						<textarea id="m-text" maxlength="2000"></textarea>
+					</div>
+				
+					<br />
+				
+					<div class="input">
+						Icon<br />
+						<input type="text" id="m-icon_url" />
+					</div>
+				
+					<div class="input" style="width: 21%;">
+						Nickname<br />
+						<input type="text" id="m-username" />
+					</div>
+				</div>
+				
+				<div class="inputs-part">
+					<div class="input" style="width: 71%;">
+						Content<br />
+						<textarea id="e-text" maxlength="2000"></textarea>
+					</div>
+					
+					<br />
+					
+					<div class="input">
+						Title<br />
+						<input type="text" id="e-title" />
+					</div>
+					
+					<div class="input">
+						Author<br />
+						<input type="text" id="e-author_name" />
+					</div>
+					
+					<div class="input">
+						Icon<br />
+						<input type="text" id="e-author_icon" />
+					</div>
+					
+					<br />
+					
+					<div class="input" style="width: 46%;">
+						Accent<br />
+						<input type="text" id="e-color" value="#4f545c">
+					</div>
+					
+					<br />
+					
+					<div class="input" style="width: 71%;">
+						Fields content<br />
+						<textarea id="e-fields-value" maxlength="2000"></textarea>
+					</div>
+					
+					<br />
+					
+					<div class="input">
+						Fields title<br />
+						<input type="text" id="e-fields-title" />
+					</div>
+					
+					<br />
+					
+					<div class="input">
+						Footer icon<br />
+						<input type="text" id="e-footer_icon" />
+					</div>
+					
+					<div class="input" style="width: 21%;">
+						Footer<br />
+						<input type="text" id="e-footer" />
+					</div>
+				</div>
+			</div>
+			
+			<div id="form-json">
+				<div class="input" style="width: 71%;">
+					JSON or JavaScript function<br />
+					<textarea id="json"></textarea>
+				</div>
+			</div>
+		</section>
+		
+		<script src="functions.js"></script>
+		<script lang="javascript" type="text/javascript">
 
 var button = document.querySelector("#send");
 
 var radios = document.querySelector("#radios"),
-    radioWithFields = document.querySelector("#radio-fields"),
-    radioWithJSON = document.querySelector("#radio-json");
+	radioWithFields = document.querySelector("#radio-fields"),
+	radioWithJSON = document.querySelector("#radio-json");
 
 var formWithFields = document.querySelector("#form-fields"),
-    formWithJSON = document.querySelector("#form-json");
+	formWithJSON = document.querySelector("#form-json");
 
 var url = document.querySelector("#url");
 
 var mText = document.querySelector("#m-text");
-    
+	
 var eText = document.querySelector("#e-text"),
-    eTitle = document.querySelector("#e-title"),
-    
-    eColor = document.querySelector("#e-color"),
-    
-    eFieldsValue = document.querySelector("#e-fields-value"),
-    eFieldsTitle = document.querySelector("#e-fields-title"),
-    
-    eFooter_icon = document.querySelector("#e-footer_icon"),
-    eFooter = document.querySelector("#e-footer");
+	eTitle = document.querySelector("#e-title"),
+	
+	eColor = document.querySelector("#e-color"),
+	
+	eFieldsValue = document.querySelector("#e-fields-value"),
+	eFieldsTitle = document.querySelector("#e-fields-title"),
+	
+	eFooter_icon = document.querySelector("#e-footer_icon"),
+	eFooter = document.querySelector("#e-footer");
 
 radios.onchange = function () {
-    if (radioWithFields.checked) {
-        formWithFields.style.display = "initial";
-        formWithJSON.style.display = "none";
-    } else {
-        formWithFields.style.display = "none";
-        formWithJSON.style.display = "initial";
-    }
+	if (radioWithFields.checked) {
+		formWithFields.style.display = "initial";
+		formWithJSON.style.display = "none";
+	} else {
+		formWithFields.style.display = "none";
+		formWithJSON.style.display = "initial";
+	}
 }
 
 formWithFields.oninput = function () {
-    if (url.value
-    // && !xor(eText.value, eTitle.value)
-    ) button.disabled = false;
-    else button.disabled = true;
+	if (url.value
+	// && !xor(eText.value, eTitle.value)
+	) button.disabled = false;
+	else button.disabled = true;
 }
 
 eColor.oninput = function () {
-    setTimeout(function () {
-        eColor.style.boxShadow = "inset 0 0 10px #000, inset 40px 0 " + eColor.value + ", inset -40px 0 " + eColor.value; 
-        if (!eColor.value) eColor.style.boxShadow = "inset 0 0 10px #000";
-    }, 20);
+	setTimeout(function () {
+		eColor.style.boxShadow = "inset 0 0 10px #000, inset 40px 0 " + eColor.value + ", inset -40px 0 " + eColor.value; 
+		if (!eColor.value) eColor.style.boxShadow = "inset 0 0 10px #000";
+	}, 20);
 }
 if (eColor.value) triggerEvent(eColor, "input");
 
 button.onclick = function () { postMessage(); };
 
 function postMessage(data, url) {
-    if (!url) url = document.getElementById("url").value + "/slack";
-    
-    if (!data) {
-        if (radioWithFields.checked) {
-            var msg = {
-                "username": document.querySelector("#m-username").value,
-                "icon_url": document.querySelector("#m-icon_url").value,
-                "text": mText.value
-            };
-        
-            var embed = {
-                "attachments": [{
-                    "text": eText.value,
-                    "title": eTitle.value,
-                    "author_name": document.querySelector("#e-author_name").value,
-                    "author_icon": document.querySelector("#e-author_icon").value,
-                    "color": eColor.value,
-                    "fields": [{
-                        "value": eFieldsValue.value,
-                        "title": eFieldsTitle.value,
-                    }],
-                    "footer_icon": eFooter_icon.value,
-                    "footer": eFooter.value
-                }]
-            };
-        
-            var att = embed.attachments[0];
-            if (att.text
-             || att.title
-             || att.author_name
-             || att.author_icon) {
-                if (!att.text) att.text = "￼";
-                if (!att.title) att.title = "￼";
-            
-                if (att.fields[0].value || att.fields[0].title) {
-                    if (!att.fields[0].value) att.fields[0].value = "￼";
-                    if (!att.fields[0].title) att.fields[0].title = "￼";
-                } else delete att.fields;
-            
-                msg = Object.assign(msg, embed);
-            } else if (!msg.text) msg.text = "￼";
-    
-            data = JSON.stringify(msg);
-        } else {
-            eval("data = " + document.querySelector("#json").value);
-            
-            var type;
-            for (var i in data) {
-                type = typeof data[i];
-                if (type == "object") {
-                    //complex stuff that will be done later
-                }
-                else if (type != "string") data[i] = JSON.stringify(data[i]);
-            }
-            
-            data = JSON.stringify(data);
-        }
-    }
-    var status = document.querySelector("#status");console.log(data);
-    status.setAttribute("class", "neutral");
-    status.innerHTML = "Sending...";
-    
-    post(url, data, function () {
-        if (this.status != 200) {
-            var error = JSON.parse(this.responseText);
-            status.setAttribute("class", "error");
-            status.innerHTML = error.code + "<br />" + error.message;
-        } else {
-            status.setAttribute("class", "success");
-            status.innerHTML = "Message posted!";
-        }
-    });
+	if (!url) url = document.getElementById("url").value + "/slack";
+	
+	if (!data) {
+		if (radioWithFields.checked) {
+			var msg = {
+				"username": document.querySelector("#m-username").value,
+				"icon_url": document.querySelector("#m-icon_url").value,
+				"text": mText.value
+			};
+		
+			var embed = {
+				"attachments": [{
+					"text": eText.value,
+					"title": eTitle.value,
+					"author_name": document.querySelector("#e-author_name").value,
+					"author_icon": document.querySelector("#e-author_icon").value,
+					"color": eColor.value,
+					"fields": [{
+						"value": eFieldsValue.value,
+						"title": eFieldsTitle.value,
+					}],
+					"footer_icon": eFooter_icon.value,
+					"footer": eFooter.value
+				}]
+			};
+		
+			var att = embed.attachments[0];
+			if (att.text
+			 || att.title
+			 || att.author_name
+			 || att.author_icon) {
+				if (!att.text) att.text = "￼";
+				if (!att.title) att.title = "￼";
+			
+				if (att.fields[0].value || att.fields[0].title) {
+					if (!att.fields[0].value) att.fields[0].value = "￼";
+					if (!att.fields[0].title) att.fields[0].title = "￼";
+				} else delete att.fields;
+			
+				msg = Object.assign(msg, embed);
+			} else if (!msg.text) msg.text = "￼";
+	
+			data = JSON.stringify(msg);
+		} else {
+			eval("data = " + document.querySelector("#json").value);
+			
+			var type;
+			for (var i in data) {
+				type = typeof data[i];
+				if (type == "object") {
+					//complex stuff that will be done later
+				}
+				else if (type != "string") data[i] = JSON.stringify(data[i]);
+			}
+			
+			data = JSON.stringify(data);
+		}
+	}
+	var status = document.querySelector("#status");console.log(data);
+	status.setAttribute("class", "neutral");
+	status.innerHTML = "Sending...";
+	
+	post(url, data, function () {
+		if (this.status != 200) {
+			var error = JSON.parse(this.responseText);
+			status.setAttribute("class", "error");
+			status.innerHTML = error.code + "<br />" + error.message;
+		} else {
+			status.setAttribute("class", "success");
+			status.innerHTML = "Message posted!";
+		}
+	});
 }
 
 var preset;
 var webhooks = [
-    "",
-    "",
-    "",
-    ""
+	"",
+	"",
+	"",
+	""
 ]
 
 switch(getQueryVar("preset")) {
-    case "1":
-        preset = [
-            webhooks[0],
-            "@everyone\nhttps://www.youtube.com/watch?v=\n\n%description%"
-        ]; break;
-    
-    case "2":
-        preset = [
-            webhooks[1]
-        ]; break;
-    
-    case "3":
-        preset = [
-            webhooks[1],
-            "",
-            "http://i.imgur.com/t6yZ07d.png",
-            "‮"
-        ]; break;
-    
-    case "4":
-        preset = [
-            webhooks[2]
-        ]; break;
-    
-    case "5":
-        preset = [
-            webhooks[3]
-        ]; break;
-        
-    case "6":
-        preset = [
-            "",
-            "I  G O T T A  B E L I E V E ! ! ! ! !",
-            "",
-            "PaRappa the Rapper", "", "", "", "", "", "", "", "", "", 
-            "(function () {\nvar lyrics = [\"Ｉ ＧＯＴＴＡ ＢＥＬＩＥＶＥ\", \"ＣＵＴ ＴＨＥ ＬＥＴＴＵＣＥ\", \"ＨＥＡＴ ＴＨＥ ＧＲＩＬＬ\", \"ＴＯＡＳＴ ＴＨＥ ＢＵＮＳ\", \"ＣＯＯＫ ＴＨＥ ＰＡＴＴＩＥＳ\", \"ＳＥＲＶＥ ＴＨＥ ＤＲＩＮＫＳ\", \"ＭＥＬＴ ＴＨＥ ＣＨＥＥＳＥ\", \"ＦＲＥＮＣＨ ＴＨＥ ＦＲＩＥＳ\", \"ＳＷＥＥＰ ＴＨＥ ＦＬＯＯＲＳ\"];\n\n" +
-             "var spaces = \"\";\n" +
-             "for (var i = 0; i < randint(3, 8); i++) { spaces += \" \"; }\n\n" +
-             "var json = {\n\"text\": \"**\" + choose(lyrics).replace(/ /g, spaces) + \"**\",\n" +
-             "\"icon_url\": \"\"\n}\n\n" +
-             "return json;\n})();"
-        ];
+	case "1":
+		preset = [
+			webhooks[0],
+			"@everyone\nhttps://www.youtube.com/watch?v=\n\n%description%"
+		]; break;
+	
+	case "2":
+		preset = [
+			webhooks[1]
+		]; break;
+	
+	case "3":
+		preset = [
+			webhooks[1],
+			"",
+			"http://i.imgur.com/t6yZ07d.png",
+			"‮"
+		]; break;
+	
+	case "4":
+		preset = [
+			webhooks[2]
+		]; break;
+	
+	case "5":
+		preset = [
+			webhooks[3]
+		]; break;
+		
+	case "6":
+		preset = [
+			"",
+			"I  G O T T A  B E L I E V E ! ! ! ! !",
+			"",
+			"PaRappa the Rapper", "", "", "", "", "", "", "", "", "", 
+			"(function () {\nvar lyrics = [\"Ｉ ＧＯＴＴＡ ＢＥＬＩＥＶＥ\", \"ＣＵＴ ＴＨＥ ＬＥＴＴＵＣＥ\", \"ＨＥＡＴ ＴＨＥ ＧＲＩＬＬ\", \"ＴＯＡＳＴ ＴＨＥ ＢＵＮＳ\", \"ＣＯＯＫ ＴＨＥ ＰＡＴＴＩＥＳ\", \"ＳＥＲＶＥ ＴＨＥ ＤＲＩＮＫＳ\", \"ＭＥＬＴ ＴＨＥ ＣＨＥＥＳＥ\", \"ＦＲＥＮＣＨ ＴＨＥ ＦＲＩＥＳ\", \"ＳＷＥＥＰ ＴＨＥ ＦＬＯＯＲＳ\"];\n\n" +
+			 "var spaces = \"\";\n" +
+			 "for (var i = 0; i < randint(3, 8); i++) { spaces += \" \"; }\n\n" +
+			 "var json = {\n\"text\": \"**\" + choose(lyrics).replace(/ /g, spaces) + \"**\",\n" +
+			 "\"icon_url\": \"\"\n}\n\n" +
+			 "return json;\n})();"
+		];
 }
 if (preset) {
-    var inputs = nodeListToArray(document.querySelectorAll("[type='text'], textarea"));
-    for (var i in preset) {
-        if (inputs[i].tagName.toLowerCase() == "input") inputs[i].value = preset[i];
-        else inputs[i].innerHTML = preset[i];
-    }
+	var inputs = nodeListToArray(document.querySelectorAll("[type='text'], textarea"));
+	for (var i in preset) {
+		if (inputs[i].tagName.toLowerCase() == "input") inputs[i].value = preset[i];
+		else inputs[i].innerHTML = preset[i];
+	}
 }
 
-        </script>
-    
-    </body>
+		</script>
+	
+	</body>
 </html>
